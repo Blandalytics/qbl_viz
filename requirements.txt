@@ -4,5 +4,6 @@ numpy
 pandas
 seaborn
 scipy
+scikit-learn
 nfl-data-py
 xgboost==1.6.0
