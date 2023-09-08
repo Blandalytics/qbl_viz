@@ -70,25 +70,25 @@ sns.set_theme(
 offense_pos = ['QB','RB','WR','TE']
 
 # Load Models
-with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/rush_xTD_model.pkl', 'rb') as f:
+with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/rush_xTD_model.pkl?raw=true', 'rb') as f:
     rush_model = pickle.load(f)
 
-with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/rush_yard_model_class.pkl', 'rb') as f:
+with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/rush_yard_model_class.pkl?raw=true', 'rb') as f:
     rush_yard_model = pickle.load(f)
 
-with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/dropback_model.pkl', 'rb') as f:
+with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/dropback_model.pkl?raw=true', 'rb') as f:
     dropback_model = pickle.load(f) 
 
-with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/rec_xTD_model.pkl', 'rb') as f:
+with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/rec_xTD_model.pkl?raw=true', 'rb') as f:
     rec_model = pickle.load(f)
 
-with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/yac_model_class.pkl', 'rb') as f:
+with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/yac_model_class.pkl?raw=true', 'rb') as f:
     yac_model = pickle.load(f)
 
-with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/wopr_model.pkl', 'rb') as f:
+with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/wopr_model.pkl?raw=true', 'rb') as f:
     wopr_model = pickle.load(f)
 
-with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/cp_model.pkl', 'rb') as f:
+with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/cp_model.pkl?raw=true', 'rb') as f:
     cp_model = pickle.load(f)
     
 # xTD Calculation
