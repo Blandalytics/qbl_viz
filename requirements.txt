@@ -5,3 +5,4 @@ pandas
 seaborn
 scipy
 nfl-data-py
+xgboost==1.6.0
