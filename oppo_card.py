@@ -72,24 +72,12 @@ offense_pos = ['QB','RB','WR','TE']
 
 # Load Models
 rush_model = pickle.load(open('models/rush_xTD_model.pkl', 'rb'))
-
-with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/rush_yard_model_class.pkl', 'rb') as f:
-    rush_yard_model = pickle.load(f)
-
-with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/dropback_model.pkl', 'rb') as f:
-    dropback_model = pickle.load(f) 
-
-with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/rec_xTD_model.pkl', 'rb') as f:
-    rec_model = pickle.load(f)
-
-with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/yac_model_class.pkl', 'rb') as f:
-    yac_model = pickle.load(f)
-
-with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/wopr_model.pkl', 'rb') as f:
-    wopr_model = pickle.load(f)
-
-with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/cp_model.pkl', 'rb') as f:
-    cp_model = pickle.load(f)
+rush_yard_model = pickle.load(open('models/rush_yard_model_class.pkl', 'rb'))
+dropback_model = pickle.load(open('models/dropback_model.pkl', 'rb')) 
+rec_model = pickle.load(open('models/rec_xTD_model.pkl', 'rb'))
+yac_model = pickle.load(open('models/yac_model_class.pkl', 'rb'))
+wopr_model = pickle.load(open('models/wopr_model.pkl', 'rb'))
+cp_model = pickle.load(open('models/cp_model.pkl', 'rb'))
     
 # xTD Calculation
 def rush_xTD(yardline_100,defenders_in_box,num_DL,num_LB,num_DB,model=rush_model):
