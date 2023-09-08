@@ -18,6 +18,7 @@ import nfl_data_py as nfl
 import re
 from PIL import Image
 import textwrap
+import xgboost
 np.random.seed(12)
 
 # Define major season dates
