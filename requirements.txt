@@ -5,4 +5,3 @@ pandas
 seaborn
 scipy
 nfl-data-py
-pickle
