@@ -21,7 +21,7 @@ import textwrap
 import xgboost
 np.random.seed(12)
 
-logo_loc = 'QB-List-Logo-wide.png?raw=true'
+logo_loc = 'https://github.com/Blandalytics/qbl_viz/blob/main/QB-List-Logo-wide.png?raw=true'
 logo = Image.open(urllib.request.urlopen(logo_loc))
 st.image(logo, width=200)
 
