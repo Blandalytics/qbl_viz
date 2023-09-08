@@ -510,7 +510,7 @@ offense_pos = ['QB','RB','WR','TE']
 # season_market['xYards'] = season_market['xRush_yards'].add(season_market['xRec_yards'])
 
 def load_data(year=this_year):
-    return pd.read_csv(f'data/season_market_data_{year}.csv?raw=true')
+    return pd.read_csv(f'https://github.com/Blandalytics/qbl_viz/blob/main/data/season_market_data_{year}.csv?raw=true')
 season_market = load_data()
 
 stat_dict = {
