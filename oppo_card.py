@@ -71,8 +71,7 @@ sns.set_theme(
 offense_pos = ['QB','RB','WR','TE']
 
 # Load Models
-with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/rush_xTD_model.pkl', 'rb') as f:
-    rush_model = pickle.load(f)
+rush_model = pickle.load(open('models/rush_xTD_model.pkl', 'rb'))
 
 with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/rush_yard_model_class.pkl', 'rb') as f:
     rush_yard_model = pickle.load(f)
