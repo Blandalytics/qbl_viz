@@ -594,7 +594,7 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
     qbl_ax.axis('off')
 
     desc_ax = plt.subplot(grid[1,:])
-    desc_ax.text(0,0,'Per-Game PPR Stats ({}; Wks {}-{})'.format(df.loc[df['player']==player,'position'].item(),market_data['week'].min(),market_data['week'].max()), 
+    desc_ax.text(0,0,'Per-Game PPR Stats ({}; Wks 1-{})'.format(df.loc[df['player']==player,'position'].item(),recent_week), 
                  ha='center', va='center', fontsize=20)
     desc_ax.set(xlabel=None, xlim=(-1,1), ylabel=None, ylim=(-1,1))
     desc_ax.set_xticklabels([])
