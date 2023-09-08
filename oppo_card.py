@@ -614,7 +614,7 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
     dist_plot(player, ru_td_ax, team_color, team_alt_color, stat='TD')
 
     # Author
-    author_ax = plt.subplot(grid[6,:3])
+    author_ax = plt.subplot(grid[6,:2])
     author_ax.text(-0.9,-1.5,'@Blandalytics', 
                  ha='left', va='top', 
                  fontsize=10, weight=500)
@@ -624,7 +624,7 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
     author_ax.tick_params(left=False, bottom=False)
   
     # Website
-    website_ax = plt.subplot(grid[6,1:5])
+    website_ax = plt.subplot(grid[6,2:5])
     website_ax.text(0,-1.5,'qblist-oppo-card.streamlit.app', 
                  ha='center', va='top', 
                  fontsize=10, weight=500)
