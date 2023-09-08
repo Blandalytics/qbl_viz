@@ -6,3 +6,4 @@ seaborn
 scipy
 nfl-data-py
 urllib
+pickle
