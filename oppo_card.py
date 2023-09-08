@@ -6,7 +6,7 @@ import scipy as sp
 import os
 import time
 import datetime
-import urllib.request
+import urllib
 from datetime import date
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
@@ -14,7 +14,6 @@ from matplotlib.gridspec import GridSpec
 from matplotlib.lines import Line2D
 import math
 import pickle
-from urllib.request import urlopen
 import nfl_data_py as nfl
 import re
 from PIL import Image
@@ -71,25 +70,25 @@ sns.set_theme(
 offense_pos = ['QB','RB','WR','TE']
 
 # Load Models
-with open('rush_xTD_model.pkl', 'rb') as f:
+with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/rush_xTD_model.pkl', 'rb') as f:
     rush_model = pickle.load(f)
 
-with open('rush_yard_model_class.pkl', 'rb') as f:
+with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/rush_yard_model_class.pkl', 'rb') as f:
     rush_yard_model = pickle.load(f)
 
-with open('dropback_model.pkl', 'rb') as f:
+with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/dropback_model.pkl', 'rb') as f:
     dropback_model = pickle.load(f) 
 
-with open('rec_xTD_model.pkl', 'rb') as f:
+with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/rec_xTD_model.pkl', 'rb') as f:
     rec_model = pickle.load(f)
 
-with open('yac_model_class.pkl', 'rb') as f:
+with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/yac_model_class.pkl', 'rb') as f:
     yac_model = pickle.load(f)
 
-with open('wopr_model.pkl', 'rb') as f:
+with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/wopr_model.pkl', 'rb') as f:
     wopr_model = pickle.load(f)
 
-with open('cp_model.pkl', 'rb') as f:
+with open('https://github.com/Blandalytics/qbl_viz/blob/main/models/cp_model.pkl', 'rb') as f:
     cp_model = pickle.load(f)
     
 # xTD Calculation
@@ -584,9 +583,7 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
     name_ax.set_yticklabels([])
     name_ax.tick_params(left=False, bottom=False)
 
-    team_watermark = urllib.request.urlopen(
-        team_logos.loc[team_logos['team_abbr']==team,'team_wordmark'].item()
-    )
+    team_watermark = Image.open(urllib.request.urlopen(team_logos.loc[team_logos['team_abbr']==team,'team_wordmark'].item()))
 
     team_ax = plt.subplot(grid[0,5:])
     team_ax.imshow(Image.open(team_watermark))
