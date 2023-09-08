@@ -624,9 +624,9 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
     
     # Box the Card
     fig.add_artist(Line2D([0.115, 0.925], [0.87, 0.87], color=qbl_main, linewidth=2))
-    fig.add_artist(Line2D([0.115, 0.115], [0.13, 0.87], color=qbl_main, linewidth=2))
-    fig.add_artist(Line2D([0.925, 0.925], [0.13, 0.87], color=qbl_main, linewidth=2))
-    fig.add_artist(Line2D([0.115, 0.925], [0.13, 0.13], color=qbl_main, linewidth=2))
+    fig.add_artist(Line2D([0.115, 0.115], [0.125, 0.87], color=qbl_main, linewidth=2))
+    fig.add_artist(Line2D([0.925, 0.925], [0.125, 0.87], color=qbl_main, linewidth=2))
+    fig.add_artist(Line2D([0.115, 0.925], [0.125, 0.125], color=qbl_main, linewidth=2))
 
     # Underline the Header
     fig.add_artist(Line2D([0.115, 0.925], [0.73, 0.73], color=qbl_main, linewidth=2)) # 0.78 for ind stats
