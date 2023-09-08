@@ -574,7 +574,7 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
     team_watermark = Image.open(urllib.request.urlopen(team_logos.loc[team_logos['team_abbr']==team,'team_wordmark'].item()))
 
     team_ax = plt.subplot(grid[0,5:])
-    team_ax.imshow(Image.open(team_watermark))
+    team_ax.imshow(team_watermark)
     team_ax.axis('off')
 
     qbl_ax = plt.subplot(grid[0,0])
