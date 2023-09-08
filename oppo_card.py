@@ -21,6 +21,10 @@ import textwrap
 import xgboost
 np.random.seed(12)
 
+logo_loc = 'QB-List-Logo-wide.png?raw=true'
+logo = Image.open(urllib.request.urlopen(logo_loc))
+st.image(logo, width=200)
+
 # Define major season dates
 this_year = 2023
 now = datetime.datetime.now()
