@@ -23,7 +23,7 @@ np.random.seed(12)
 
 logo_loc = 'https://github.com/Blandalytics/qbl_viz/blob/main/QB-List-Logo-wide.png?raw=true'
 logo = Image.open(urllib.request.urlopen(logo_loc))
-st.image(logo, width=200)
+st.image(logo, width=500)
 
 # Define major season dates
 this_year = 2023
