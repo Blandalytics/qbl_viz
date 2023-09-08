@@ -611,7 +611,7 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
 
     # Author
     author_ax = plt.subplot(grid[6,:4])
-    author_ax.text(-0.9,-1.5,'@Blandalytics', 
+    author_ax.text(-0.9,-1.5,'@Blandalytics\nqblist-oppo-card.streamlit.app', 
                  ha='left', va='top', 
                  fontsize=10, weight=500)
     author_ax.set(xlabel=None, xlim=(-1,1), ylabel=None, ylim=(-1,1))
