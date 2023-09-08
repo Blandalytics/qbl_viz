@@ -25,6 +25,9 @@ logo_loc = 'https://github.com/Blandalytics/qbl_viz/blob/main/QB-List-Logo-wide.
 logo = Image.open(urllib.request.urlopen(logo_loc))
 st.image(logo, width=500)
 
+st.title("OPPO")
+st.write('OPPO is a metric designed to combine multiple models (xRush Yards, xRush TDs, xCompletion%, xReceiving Yards, and xReceiving TDs) into a single all-in-one fantasy metric. Standard PPR values are utilized (0.1 pts per yard, 6pts per TD, and 1pt per reception.')
+st.write('For more information, read [this explainer article](https://football.pitcherlist.com/oppo-valuing-opportunities-for-fantasy-football/).')
 # Define major season dates
 this_year = 2023
 now = datetime.datetime.now()
