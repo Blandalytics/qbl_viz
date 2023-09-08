@@ -4,3 +4,4 @@ numpy
 pandas
 seaborn
 scipy
+nfl-data-py
