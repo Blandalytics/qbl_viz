@@ -510,7 +510,7 @@ season_market['yards'] = season_market['ru_yards'].add(season_market['re_yards']
 season_market['xYards'] = season_market['xRush_yards'].add(season_market['xRec_yards'])
 
 stat_dict = {
-    'FP':['FP','OPPO','OPPO'],
+    'FP':['Pts','OPPO','OPPO'],
     'ru_yards':['Rush Yards','xRush_yards','xRush Yards'],
     'ru_TD':['Rush TD','ru_xTD','xRush TD'],
     'receptions':['Catches','xRec','xCatches'],
