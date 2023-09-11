@@ -101,7 +101,7 @@ def bright_val(hex):
     denom = 255 * np.sqrt(0.299 + 0.587 + 0.114)
     return np.sqrt(0.299 * rgb[0]**2 + 0.587 * rgb[1]**2 + 0.114 * rgb[2]**2) / denom
 
-def dist_plot(player,ax,team_color,team_alt_color,stat='FP',df=season_market):
+def dist_plot(player,ax,team_color,team_alt_color,team_3rd_color,stat='FP',df=season_market):
     stat_val = df.loc[df['player']==player,stat].div(df['games']).mean()
     xstat_val = df.loc[df['player']==player,stat_dict[stat][1]].div(df['games']).mean()
     outline_color = team_color if bright_val(team_alt_color)>0.2 else team_alt_color
@@ -117,8 +117,7 @@ def dist_plot(player,ax,team_color,team_alt_color,stat='FP',df=season_market):
 
     ax.axvline(xstat_val, ymax=0.575, color=team_color, linewidth=4)
     oppo_text = ax.text(xstat_val,ax.get_ylim()[1]*0.825,stat_dict[stat][2], ha='center', va='center', fontsize=12, weight=800,
-                        color=team_alt_color, bbox=dict(facecolor='white', alpha=1, edgecolor=team_color, linewidth=2))
-    # oppo_text.set_path_effects([patheffects.withStroke(linewidth=1.2, foreground=outline_color)])
+                        color=team_alt_color, bbox=dict(facecolor=team_3rd_color, alpha=1, edgecolor=team_color, linewidth=2))
   
     ax.axvline(stat_val, ymax=0.1, color='black', linewidth=4)
     ax.text(stat_val,ax.get_ylim()[1]*0.35,stat_dict[stat][0], ha='center', va='center', fontsize=12, color='black', bbox=dict(facecolor='white', alpha=1, edgecolor='grey'))
@@ -139,7 +138,8 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
     team = df.loc[df['player']==player,'team'].item()
     team_color = team_logos.loc[team_logos['team_abbr']==team,'team_color'].item()# if (bright_val(team_logos.loc[team_logos['team_abbr']==team,'team_color'].item())>0.2) or (team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item()=='#000000') else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item()
     team_alt_color = team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item()# if bright_val(team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item())>0.2 else team_logos.loc[team_logos['team_abbr']==team,'team_color'].item()
-
+    team_3rd_color = team_logos.loc[team_logos['team_abbr']==team,'team_color3'].item()
+  
     # Parameters to divide card
     grid_height = 7 # 8 for individual stats
     grid_width = 7
@@ -178,16 +178,16 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
     desc_ax.tick_params(left=False, bottom=False)
 
     oppo_ax = plt.subplot(grid[2,:])
-    dist_plot(player, oppo_ax, team_color, team_alt_color)
+    dist_plot(player, oppo_ax, team_color, team_alt_color, team_3rd_color)
 
     rec_ax = plt.subplot(grid[3,:])
-    dist_plot(player, rec_ax, team_color, team_alt_color, stat='receptions')
+    dist_plot(player, rec_ax, team_color, team_alt_color, team_3rd_color, stat='receptions')
 
     ru_yard_ax = plt.subplot(grid[4,:])
-    dist_plot(player, ru_yard_ax, team_color, team_alt_color, stat='yards')
+    dist_plot(player, ru_yard_ax, team_color, team_alt_color, team_3rd_color, stat='yards')
 
     ru_td_ax = plt.subplot(grid[5,:])
-    dist_plot(player, ru_td_ax, team_color, team_alt_color, stat='TD')
+    dist_plot(player, ru_td_ax, team_color, team_alt_color, team_3rd_color, stat='TD')
 
     # Author
     author_ax = plt.subplot(grid[6,:2])
