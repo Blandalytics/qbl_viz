@@ -225,8 +225,21 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
     sns.despine(left=True, bottom=True)
     st.pyplot(fig)
 
+pos_select = st.radio('Position Group', 
+                      ['All','Flex']+offense_pos,
+                      index=0,
+                      horizontal=True
+                      )
+
+if pos_select=='All':
+    pos_filter = offense_pos
+elif pos_select=='Flex':
+    pos_filter = ['RB','WR','TE']
+else:
+    pos_filter = [pos_select]
+
 # Player
-players = season_market.sort_values('OPPO',ascending=False)['player'].to_list()
+players = season_market.loc[season_market['position'].isin(pos_filter)].sort_values('OPPO',ascending=False)['player'].to_list()
 player = st.selectbox('Choose a player:', players)
 
 qblist_card(player)
