@@ -148,11 +148,10 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
                         height_ratios=[1.75,.25]+[1]*(grid_height-3)+[0.1])
 
     name_ax = plt.subplot(grid[0,1:5])
-    name_text = name_ax.text(0,0,textwrap.fill(player, 14, break_on_hyphens=False), 
+    name_ax.text(0,0,textwrap.fill(player, 14, break_on_hyphens=False), 
                  ha='center', va='center', 
                  color=team_alt_color, 
-                 fontsize=25, weight=600)
-    name_text.set_path_effects([patheffects.withStroke(linewidth=2, foreground=team_color)])
+                 fontsize=25, weight=1000)
     name_ax.set(xlabel=None, xlim=(-1,1), ylabel=None, ylim=(-1,1))
     name_ax.set_xticklabels([])
     name_ax.set_yticklabels([])
