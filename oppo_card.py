@@ -101,10 +101,18 @@ def bright_val(hex):
     denom = 255 * np.sqrt(0.299 + 0.587 + 0.114)
     return np.sqrt(0.299 * rgb[0]**2 + 0.587 * rgb[1]**2 + 0.114 * rgb[2]**2) / denom
 
+def get_luminance(hex_color):
+    color = hex_color[1:]
+
+    hex_red = int(color[0:2], base=16)
+    hex_green = int(color[2:4], base=16)
+    hex_blue = int(color[4:6], base=16)
+
+    return hex_red * 0.2126 + hex_green * 0.7152 + hex_blue * 0.0722
+
 def dist_plot(player,ax,team_color,team_alt_color,stat='FP',df=season_market):
     stat_val = df.loc[df['player']==player,stat].div(df['games']).mean()
     xstat_val = df.loc[df['player']==player,stat_dict[stat][1]].div(df['games']).mean()
-    outline_color = team_color if bright_val(team_alt_color)>0.2 else team_alt_color
 
     pos = df.loc[df['player']==player,'position'].item()
 
@@ -116,7 +124,7 @@ def dist_plot(player,ax,team_color,team_alt_color,stat='FP',df=season_market):
                 ax=ax)
 
     ax.axvline(xstat_val, ymax=0.575, color=team_color, linewidth=4)
-    oppo_text = ax.text(xstat_val,ax.get_ylim()[1]*0.825,stat_dict[stat][2], ha='center', va='center', fontsize=12, weight=800,
+    ax.text(xstat_val,ax.get_ylim()[1]*0.825,stat_dict[stat][2], ha='center', va='center', fontsize=12, weight=800,
                         color=team_alt_color, bbox=dict(facecolor='w', alpha=1, edgecolor=team_color, linewidth=2))
   
     ax.axvline(stat_val, ymax=0.1, color='black', linewidth=4)
@@ -137,7 +145,7 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
 
     team = df.loc[df['player']==player,'team'].item()
     team_color = team_logos.loc[team_logos['team_abbr']==team,'team_color'].item()# if (bright_val(team_logos.loc[team_logos['team_abbr']==team,'team_color'].item())>0.2) or (team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item()=='#000000') else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item()
-    team_alt_color = team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item() if bright_val(team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item())<0.5 else team_logos.loc[team_logos['team_abbr']==team,'team_color'].item()
+    team_alt_color = team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item() if get_luminance(team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item()) < 140 else team_logos.loc[team_logos['team_abbr']==team,'team_color'].item()
   
     # Parameters to divide card
     grid_height = 7 # 8 for individual stats
