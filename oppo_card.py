@@ -133,7 +133,7 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
 
     team = df.loc[df['player']==player,'team'].item()
     team_color = team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if (bright_val(team_logos.loc[team_logos['team_abbr']==team,'team_color'].item())>0.2) or (team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item()=='#000000') else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item()
-    team_alt_color = team_logos.loc[team_logos['team_abbr']==team,'team_color'].item()# if bright_val(team_logos.loc[team_logos['team_abbr']==team,'team_color'].item())>0.2 else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item()
+    team_alt_color = team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if bright_val(team_logos.loc[team_logos['team_abbr']==team,'team_color'].item())>0.2 else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item()
 
     # Parameters to divide card
     grid_height = 7 # 8 for individual stats
