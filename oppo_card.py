@@ -116,9 +116,9 @@ def dist_plot(player,ax,team_color,team_alt_color,stat='FP',df=season_market):
                 ax=ax)
 
     ax.axvline(xstat_val, ymax=0.575, color=team_color, linewidth=4)
-    oppo_text = ax.text(xstat_val,ax.get_ylim()[1]*0.825,stat_dict[stat][2], ha='center', va='center', fontsize=12,# weight=600,
+    oppo_text = ax.text(xstat_val,ax.get_ylim()[1]*0.825,stat_dict[stat][2], ha='center', va='center', fontsize=12, weight=800,
                         color=team_alt_color, bbox=dict(facecolor='white', alpha=1, edgecolor=team_color, linewidth=2))
-    oppo_text.set_path_effects([patheffects.withStroke(linewidth=1.2, foreground=outline_color)])
+    # oppo_text.set_path_effects([patheffects.withStroke(linewidth=1.2, foreground=outline_color)])
   
     ax.axvline(stat_val, ymax=0.1, color='black', linewidth=4)
     ax.text(stat_val,ax.get_ylim()[1]*0.35,stat_dict[stat][0], ha='center', va='center', fontsize=12, color='black', bbox=dict(facecolor='white', alpha=1, edgecolor='grey'))
@@ -148,10 +148,11 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
                         height_ratios=[1.75,.25]+[1]*(grid_height-3)+[0.1])
 
     name_ax = plt.subplot(grid[0,1:5])
-    name_ax.text(0,0,textwrap.fill(player, 14, break_on_hyphens=False), 
+    name_text = name_ax.text(0,0,textwrap.fill(player, 14, break_on_hyphens=False), 
                  ha='center', va='center', 
-                 color=team_color, 
-                 fontsize=25, weight=1000)
+                 color=team_alt_color, 
+                 fontsize=25, weight=800)
+    name_text.set_path_effects([patheffects.withStroke(linewidth=2, foreground=team_color)])
     name_ax.set(xlabel=None, xlim=(-1,1), ylabel=None, ylim=(-1,1))
     name_ax.set_xticklabels([])
     name_ax.set_yticklabels([])
