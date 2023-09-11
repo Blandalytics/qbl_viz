@@ -28,6 +28,7 @@ st.image(logo, width=250)
 st.title("OPPO")
 st.write('OPPO is a metric designed to combine multiple models (xRush Yards, xRush TDs, xCompletion%, xReceiving Yards, and xReceiving TDs) into an all-in-one fantasy metric. Standard PPR values are utilized (0.1 pts per yard, 6pts per TD, and 1pt per reception).')
 st.write('For more information, read [this explainer article](https://football.pitcherlist.com/oppo-valuing-opportunities-for-fantasy-football/).')
+st.write('Note: OPPO does ***not*** include passing stats.')
 # Define major season dates
 this_year = 2023
 now = datetime.datetime.now()
