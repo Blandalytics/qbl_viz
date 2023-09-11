@@ -94,9 +94,17 @@ stat_dict = {
     'yards':['Yards','xYards','xYards'],
     'TD':['TD','xTD','xTD'],
 }
+
+def bright_val(hex):
+    hex = hex.replace('#','')
+    rgb = tuple(int(hex[i:i+2], 16) for i in (0, 2, 4))
+    denom = 255 * np.sqrt(0.299 + 0.587 + 0.114)
+    return np.sqrt(0.299 * rgb[0]**2 + 0.587 * rgb[1]**2 + 0.114 * rgb[2]**2) / denom
+
 def dist_plot(player,ax,team_color,team_alt_color,stat='FP',df=season_market):
     stat_val = df.loc[df['player']==player,stat].div(df['games']).mean()
     xstat_val = df.loc[df['player']==player,stat_dict[stat][1]].div(df['games']).mean()
+    outline_color = team_color if bright_val(team_alt_color)>0.2 else team_alt_color
 
     pos = df.loc[df['player']==player,'position'].item()
 
@@ -109,7 +117,7 @@ def dist_plot(player,ax,team_color,team_alt_color,stat='FP',df=season_market):
 
     ax.axvline(xstat_val, ymax=0.575, color=team_color, linewidth=4)
     oppo_text = ax.text(xstat_val,ax.get_ylim()[1]*0.825,stat_dict[stat][2], ha='center', va='center', fontsize=12, weight=600, color=team_alt_color, bbox=dict(facecolor='white', alpha=1, edgecolor=team_color, linewidth=2))
-    oppo_text.set_path_effects([patheffects.withStroke(linewidth=1.2, foreground=team_color)])
+    oppo_text.set_path_effects([patheffects.withStroke(linewidth=1.2, foreground=outline_color)])
   
     ax.axvline(stat_val, ymax=0.1, color='black', linewidth=4)
     ax.text(stat_val,ax.get_ylim()[1]*0.35,stat_dict[stat][0], ha='center', va='center', fontsize=12, color='black', bbox=dict(facecolor='white', alpha=1, edgecolor='grey'))
@@ -123,12 +131,6 @@ def dist_plot(player,ax,team_color,team_alt_color,stat='FP',df=season_market):
                  ax.get_ylim()[1]))
     ax.set_yticklabels([])
     ax.tick_params(left=False)
-
-def bright_val(hex):
-    hex = hex.replace('#','')
-    rgb = tuple(int(hex[i:i+2], 16) for i in (0, 2, 4))
-    denom = 255 * np.sqrt(0.299 + 0.587 + 0.114)
-    return np.sqrt(0.299 * rgb[0]**2 + 0.587 * rgb[1]**2 + 0.114 * rgb[2]**2) / denom
 
 def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.githubusercontent.com/nflverse/nflverse-pbp/master/teams_colors_logos.csv')):
     fig = plt.figure(figsize=(8,8))
