@@ -31,7 +31,7 @@ st.write('OPPO is a metric designed to combine multiple models (xRush Yards, xRu
 st.write('For more information, read [this explainer article](https://football.pitcherlist.com/oppo-valuing-opportunities-for-fantasy-football/).')
 st.write('Note: OPPO does ***not*** include passing stats.')
 # Define major season dates
-this_year = 2023
+this_year = st.radio('Choose a season:', [2023,2022,2021,2020])
 now = datetime.datetime.now()
 today = datetime.datetime(now.year, now.month, now.day)
 season_start = datetime.datetime(this_year, 9, 7)
@@ -79,7 +79,7 @@ sns.set_theme(
 # Offensive Positions
 offense_pos = ['QB','RB','WR','TE']
 
-@st.cache_data(ttl=12*3600)
+@st.cache_data(ttl=2*3600)
 def load_data(year=this_year):
     return pd.read_csv(f'https://github.com/Blandalytics/qbl_viz/blob/main/data/season_market_data_{year}.csv?raw=true')
 season_market = load_data()
