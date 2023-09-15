@@ -142,11 +142,11 @@ def dist_plot(player,ax,team_color,team_alt_color,stat='FP',df=season_market):
                  ax.get_ylim()[1]))
     ax.set_yticklabels([])
     if stat=='FP':
-      ax.set_xticks(range(0,ax_x_lim+1)[::5])
+      ax.set_xticks(range(0,ax_x_lim+1,5))
     elif stat=='receptions':
       ax.set_xticks(range(0,ax_x_lim+1))
     elif stat=='yards':
-      ax.set_xticks(range(0,ax_x_lim+1)[::20])
+      ax.set_xticks(range(0,ax_x_lim+1,20))
     else:
       ax.set_xticks([x/2 for x in range(0,ax_x_lim*2+1)])
     ax.tick_params(left=False)
