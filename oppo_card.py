@@ -82,9 +82,9 @@ sns.set_theme(
 offense_pos = ['QB','RB','WR','TE']
 
 @st.cache_data(ttl=2*3600)
-def load_data(year=this_year):
+def load_data(year):
     return pd.read_csv(f'https://github.com/Blandalytics/qbl_viz/blob/main/data/season_market_data_{year}.csv?raw=true')
-season_market = load_data()
+season_market = load_data(this_year)
 
 stat_dict = {
     'FP':['Pts','OPPO','OPPO'],
