@@ -148,7 +148,7 @@ def dist_plot(player,ax,team_color,team_alt_color,stat='FP',df=season_market):
     elif stat=='yards':
       ax.set_xticks(np.arange(ax_x_lim+1)[::20])
     else:
-      ax.set_xticks([x/2 for x in np.arange(ax_x_lim*2+1)])
+      ax.set_xticks([x/2 for x in np.arange(int(ax_x_lim*2+1))])
     ax.tick_params(left=False)
 
 def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.githubusercontent.com/nflverse/nflverse-pbp/master/teams_colors_logos.csv')):
