@@ -137,10 +137,12 @@ def dist_plot(player,ax,team_color,team_alt_color,stat='FP',df=season_market):
     ax.set(xlabel=None, 
            ylabel=None, 
            xlim=(-ax_x_lim*0.05 if min(stat_val,xstat_val)>=ax_x_lim*x_fudge else min(stat_val-ax_x_lim*x_fudge,-ax_x_lim*x_fudge),
-                 max(xstat_val*1.115,stat_val*1.115,ax_x_lim)), 
+                 max(xstat_val*(1+x_fudge),stat_val*(1+x_fudge),ax_x_lim*1.05)), 
            ylim=(0,
                  ax.get_ylim()[1]))
     ax.set_yticklabels([])
+    if stat=='TD':
+      ax.set_xticks(
     ax.tick_params(left=False)
 
 def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.githubusercontent.com/nflverse/nflverse-pbp/master/teams_colors_logos.csv')):
