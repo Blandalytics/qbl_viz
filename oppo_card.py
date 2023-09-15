@@ -168,10 +168,10 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
     name_ax = plt.subplot(grid[0,1:5])
     name_text = name_ax.text(0,0,textwrap.fill(player, 14, break_on_hyphens=False), 
                  ha='center', va='center', 
-                 color=team_alt_color, 
+                 color=team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item(), 
                  fontsize=26, weight=1000)
     name_text.set_path_effects([patheffects.withStroke(linewidth=1.5, 
-                                                       foreground=team_color if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item())])
+                                                       foreground=team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color'].item())])
     name_ax.set(xlabel=None, xlim=(-1,1), ylabel=None, ylim=(-1,1))
     name_ax.set_xticklabels([])
     name_ax.set_yticklabels([])
