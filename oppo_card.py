@@ -31,7 +31,9 @@ st.write('OPPO is a metric designed to combine multiple models (xRush Yards, xRu
 st.write('For more information, read [this explainer article](https://football.pitcherlist.com/oppo-valuing-opportunities-for-fantasy-football/).')
 st.write('Note: OPPO does ***not*** include passing stats.')
 # Define major season dates
-this_year = st.radio('Choose a season:', [2023,2022,2021,2020])
+this_year = st.radio('Choose a season:', 
+                     [2023,2022,2021,2020],
+                     horizontal=True)
 now = datetime.datetime.now()
 today = datetime.datetime(now.year, now.month, now.day)
 season_start = datetime.datetime(this_year, 9, 7)
