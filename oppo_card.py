@@ -133,7 +133,7 @@ def dist_plot(player,ax,team_color,team_alt_color,stat='FP',df=season_market):
     ax.text(stat_val,ax.get_ylim()[1]*0.35,stat_dict[stat][0], ha='center', va='center', fontsize=12, color='black', bbox=dict(facecolor='white', alpha=1, edgecolor='grey'))
 
     ax_x_lim = ax.get_xlim()[1].copy()
-    x_fudge = 0.075
+    x_fudge = 0.08
     ax.set(xlabel=None, 
            ylabel=None, 
            xlim=(-ax_x_lim*0.05 if min(stat_val,xstat_val)>=ax_x_lim*x_fudge else min(stat_val-ax_x_lim*x_fudge,-ax_x_lim*x_fudge),
