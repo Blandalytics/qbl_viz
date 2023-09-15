@@ -135,7 +135,7 @@ def dist_plot(player,ax,team_color,team_alt_color,stat='FP',df=season_market):
     ax_x_lim = ax.get_xlim()[1].copy()
     ax.set(xlabel=None, 
            ylabel=None, 
-           xlim=(-ax_x_lim*0.05,# if min(stat_val,xstat_val)>=ax_x_lim*0.11 else min(stat_val-ax_x_lim*0.11,-ax_x_lim*0.11),
+           xlim=(-ax_x_lim*0.05 if (min(stat_val,xstat_val)>=ax_x_lim*0.11) | (stat=='TD') else min(stat_val-ax_x_lim*0.11,-ax_x_lim*0.11),
                  max(xstat_val*1.115,stat_val*1.115,ax_x_lim)), 
            ylim=(0,
                  ax.get_ylim()[1]))
@@ -192,11 +192,11 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
     rec_ax = plt.subplot(grid[3,:])
     dist_plot(player, rec_ax, team_color, team_alt_color, stat='receptions')
 
-    ru_yard_ax = plt.subplot(grid[4,:])
-    dist_plot(player, ru_yard_ax, team_color, team_alt_color, stat='yards')
+    yard_ax = plt.subplot(grid[4,:])
+    dist_plot(player, yard_ax, team_color, team_alt_color, stat='yards')
 
-    ru_td_ax = plt.subplot(grid[5,:])
-    dist_plot(player, ru_td_ax, team_color, team_alt_color, stat='TD')
+    td_ax = plt.subplot(grid[5,:])
+    dist_plot(player, td_ax, team_color, team_alt_color, stat='TD')
 
     # Author
     author_ax = plt.subplot(grid[6,:2])
