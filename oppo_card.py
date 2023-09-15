@@ -135,7 +135,7 @@ def dist_plot(player,ax,team_color,team_alt_color,stat='FP',df=season_market):
     ax_x_lim = ax.get_xlim()[1].copy()
     ax.set(xlabel=None, 
            ylabel=None, 
-           xlim=(-ax_x_lim*0.05 if min(stat_val,xstat_val)>=ax_x_lim*0.11 else min(stat_val-ax_x_lim*0.11,-ax_x_lim*0.11),
+           xlim=(-ax_x_lim*0.05,# if min(stat_val,xstat_val)>=ax_x_lim*0.11 else min(stat_val-ax_x_lim*0.11,-ax_x_lim*0.11),
                  max(xstat_val*1.115,stat_val*1.115,ax_x_lim)), 
            ylim=(0,
                  ax.get_ylim()[1]))
