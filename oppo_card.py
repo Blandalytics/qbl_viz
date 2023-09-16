@@ -200,16 +200,24 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
     desc_ax.tick_params(left=False, bottom=False)
 
     oppo_ax = plt.subplot(grid[2,:])
-    dist_plot(player, oppo_ax, team_color, team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item())
+    dist_plot(player, oppo_ax, 
+              team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color'].item(), 
+              team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item())
 
     rec_ax = plt.subplot(grid[3,:])
-    dist_plot(player, rec_ax, team_color, team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item(), stat='receptions')
+    dist_plot(player, rec_ax, 
+              team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color'].item(), 
+              team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item(), stat='receptions')
 
     yard_ax = plt.subplot(grid[4,:])
-    dist_plot(player, yard_ax, team_color, team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item(), stat='yards')
+    dist_plot(player, yard_ax, 
+              team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color'].item(), 
+              team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item(), stat='yards')
 
     td_ax = plt.subplot(grid[5,:])
-    dist_plot(player, td_ax, team_color, team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item(), stat='TD')
+    dist_plot(player, td_ax, 
+              team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color'].item(), 
+              team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item(), stat='TD')
 
     # Author
     author_ax = plt.subplot(grid[6,:2])
