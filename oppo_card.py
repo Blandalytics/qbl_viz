@@ -127,7 +127,7 @@ def dist_plot(player,ax,team_color,team_alt_color,stat='FP',df=season_market):
 
     ax.axvline(xstat_val, ymax=0.575, color=team_color, linewidth=4)
     text_box = ax.text(xstat_val,ax.get_ylim()[1]*0.825,stat_dict[stat][2], ha='center', va='center', fontsize=12, weight=800,
-                        color=team_alt_color, bbox=dict(facecolor='w', alpha=1, edgecolor=team_color, linewidth=2))
+                        color=team_color, bbox=dict(facecolor='w', alpha=1, edgecolor=team_color, linewidth=2))
     text_box.set_path_effects([patheffects.withStroke(linewidth=1.5,
                                                       foreground=team_alt_color)])
   
