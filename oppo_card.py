@@ -126,8 +126,9 @@ def dist_plot(player,ax,team_color,team_alt_color,stat='FP',df=season_market):
                 ax=ax)
 
     ax.axvline(xstat_val, ymax=0.575, color=team_color, linewidth=4)
-    ax.text(xstat_val,ax.get_ylim()[1]*0.825,stat_dict[stat][2], ha='center', va='center', fontsize=12, weight=800,
+    text_box = ax.text(xstat_val,ax.get_ylim()[1]*0.825,stat_dict[stat][2], ha='center', va='center', fontsize=12, weight=800,
                         color=team_alt_color, bbox=dict(facecolor='w', alpha=1, edgecolor=team_color, linewidth=2))
+    text_box.set_path_effects([patheffects.withStroke(linewidth=1.5,team_alt_color)])
   
     ax.axvline(stat_val, ymax=0.1, color='black', linewidth=4)
     ax.text(stat_val,ax.get_ylim()[1]*0.35,stat_dict[stat][0], ha='center', va='center', fontsize=12, color='black', bbox=dict(facecolor='white', alpha=1, edgecolor='grey'))
@@ -198,16 +199,16 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
     desc_ax.tick_params(left=False, bottom=False)
 
     oppo_ax = plt.subplot(grid[2,:])
-    dist_plot(player, oppo_ax, team_color, team_alt_color)
+    dist_plot(player, oppo_ax, team_color, team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item())
 
     rec_ax = plt.subplot(grid[3,:])
-    dist_plot(player, rec_ax, team_color, team_alt_color, stat='receptions')
+    dist_plot(player, rec_ax, team_color, team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item(), stat='receptions')
 
     yard_ax = plt.subplot(grid[4,:])
-    dist_plot(player, yard_ax, team_color, team_alt_color, stat='yards')
+    dist_plot(player, yard_ax, team_color, team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item(), stat='yards')
 
     td_ax = plt.subplot(grid[5,:])
-    dist_plot(player, td_ax, team_color, team_alt_color, stat='TD')
+    dist_plot(player, td_ax, team_color, team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item(), stat='TD')
 
     # Author
     author_ax = plt.subplot(grid[6,:2])
