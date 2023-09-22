@@ -275,7 +275,7 @@ else:
     pos_filter = [pos_select]
 
 # Player
-players = season_market.loc[season_market['position'].isin(pos_filter)].sort_values('OPPO',ascending=False)['player'].to_list()
+players = season_market.loc[season_market['position'].isin(pos_filter)].sort_values('OPPO_pg',ascending=False)['player'].to_list()
 player = st.selectbox('Choose a player:', players)
 
 qblist_card(player)
