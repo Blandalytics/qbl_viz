@@ -168,7 +168,7 @@ def qblist_card(player, weeks, df=season_market, team_logos=pd.read_csv('https:/
     grid_width = 7
     # Divide card into tiles
     grid = plt.GridSpec(grid_height, grid_width, wspace=0.1*2, hspace=0.6, width_ratios=[1]+[2.9/3]*3+[0.1]+[1]*2,
-                        height_ratios=[1.75,.25]+[1]*(grid_height-3)+[0.1])
+                        height_ratios=[1.7,.3]+[1]*(grid_height-3)+[0.1])
 
     name_ax = plt.subplot(grid[0,1:5])
     name_text = name_ax.text(0,0,textwrap.fill(player, 14, break_on_hyphens=False), 
