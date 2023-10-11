@@ -268,7 +268,7 @@ def qblist_card(player, weeks, df=season_market, team_logos=pd.read_csv('https:/
     fig.add_artist(Line2D([0.115, 0.925], [0.12, 0.12], color=qbl_main, linewidth=2))
 
     # Underline the Header
-    fig.add_artist(Line2D([0.115, 0.925], [0.755, 0.755], color=qbl_main, linewidth=2)) # 0.78 for ind stats
+    fig.add_artist(Line2D([0.115, 0.925], [0.75, 0.75], color=qbl_main, linewidth=2)) # 0.78 for ind stats
     
     sns.despine(left=True, bottom=True)
     st.pyplot(fig)
