@@ -86,6 +86,8 @@ def load_data(year):
     return pd.read_csv(f'https://github.com/Blandalytics/qbl_viz/blob/main/data/season_market_data_{year}.csv?raw=true')
 season_market = load_data(this_year)
 
+gp_thresh = int(season_market['games'].max()/2)
+
 stat_dict = {
     'FP':['Pts','OPPO','OPPO'],
     'ru_yards':['Rush Yards','xRush_yards','xRush Yards'],
@@ -153,8 +155,9 @@ def dist_plot(player,ax,team_color,team_alt_color,stat='FP',df=season_market):
       ax.set_xticks([x/4 for x in np.arange(int(ax_x_lim*4+1))])
     ax.tick_params(left=False)
 
-def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.githubusercontent.com/nflverse/nflverse-pbp/master/teams_colors_logos.csv')):
+def qblist_card(player, weeks, df=season_market, team_logos=pd.read_csv('https://raw.githubusercontent.com/nflverse/nflverse-pbp/master/teams_colors_logos.csv')):
     fig = plt.figure(figsize=(8,8))
+    df = df.loc[df['games']>=weeks].copy()
 
     team = df.loc[df['player']==player,'team'].item()
     team_color = team_logos.loc[team_logos['team_abbr']==team,'team_color'].item()# if (bright_val(team_logos.loc[team_logos['team_abbr']==team,'team_color'].item())>0.2) or (team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item()=='#000000') else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item()
@@ -191,7 +194,7 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
     qbl_ax.axis('off')
 
     desc_ax = plt.subplot(grid[1,:])
-    week_text = f'Wks 1-{recent_week}' if recent_week!=1 else 'Wk 1'
+    week_text = f'min {weeks} GP'
     desc_ax.text(0,0,'Per-Game PPR Stats ({}; {})'.format(df.loc[df['player']==player,'position'].item(),week_text), 
                  ha='center', va='center', fontsize=20)
     desc_ax.set(xlabel=None, xlim=(-1,1), ylabel=None, ylim=(-1,1))
@@ -202,22 +205,29 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
     oppo_ax = plt.subplot(grid[2,:])
     dist_plot(player, oppo_ax, 
               team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color'].item(), 
-              team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item())
+              team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item(),
+              df=df)
 
     rec_ax = plt.subplot(grid[3,:])
     dist_plot(player, rec_ax, 
               team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color'].item(), 
-              team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item(), stat='receptions')
+              team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item(), 
+              stat='receptions',
+              df=df)
 
     yard_ax = plt.subplot(grid[4,:])
     dist_plot(player, yard_ax, 
               team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color'].item(), 
-              team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item(), stat='yards')
+              team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item(), 
+              stat='yards',
+              df=df)
 
     td_ax = plt.subplot(grid[5,:])
     dist_plot(player, td_ax, 
               team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color'].item(), 
-              team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item(), stat='TD')
+              team_logos.loc[team_logos['team_abbr']==team,'team_color'].item() if team_color != team_alt_color else team_logos.loc[team_logos['team_abbr']==team,'team_color2'].item(), 
+              stat='TD',
+              df=df)
 
     # Author
     author_ax = plt.subplot(grid[6,:2])
@@ -261,6 +271,8 @@ def qblist_card(player, df=season_market, team_logos=pd.read_csv('https://raw.gi
     sns.despine(left=True, bottom=True)
     st.pyplot(fig)
 
+weeks = st.number_input('Games Played Minimum:',min_value=1,max_value=season_market['games'].max()-1,value=gp_thresh)
+
 pos_select = st.radio('Position Group', 
                       ['All','Flex']+offense_pos,
                       index=0,
@@ -275,7 +287,8 @@ else:
     pos_filter = [pos_select]
 
 # Player
-players = season_market.loc[season_market['position'].isin(pos_filter)].sort_values('OPPO_pg',ascending=False)['player'].to_list()
+players = season_market.loc[season_market['position'].isin(pos_filter) &
+                            (season_market['games']>=weeks)].sort_values('OPPO_pg',ascending=False)['player'].to_list()
 player = st.selectbox('Choose a player:', players)
 
-qblist_card(player)
+qblist_card(player, weeks)
