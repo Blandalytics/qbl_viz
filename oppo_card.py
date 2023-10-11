@@ -273,7 +273,7 @@ def qblist_card(player, weeks, df=season_market, team_logos=pd.read_csv('https:/
     sns.despine(left=True, bottom=True)
     st.pyplot(fig)
 
-col1, col2 = st.columns(2)
+col1, col2 = st.columns([2/3,1/3])
 
 with col1:
     # Position
