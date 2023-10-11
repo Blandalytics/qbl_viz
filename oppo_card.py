@@ -168,7 +168,7 @@ def qblist_card(player, weeks, df=season_market, team_logos=pd.read_csv('https:/
     grid_width = 7
     # Divide card into tiles
     grid = plt.GridSpec(grid_height, grid_width, wspace=0.1*2, hspace=0.6, width_ratios=[1]+[2.9/3]*3+[0.1]+[1]*2,
-                        height_ratios=[1.7,.3]+[1]*(grid_height-3)+[0.1])
+                        height_ratios=[1.6,.4]+[1]*(grid_height-3)+[0.1])
 
     name_ax = plt.subplot(grid[0,1:5])
     name_text = name_ax.text(0,0,textwrap.fill(player, 14, break_on_hyphens=False), 
@@ -197,9 +197,9 @@ def qblist_card(player, weeks, df=season_market, team_logos=pd.read_csv('https:/
     week_text = f'min {weeks} GP'
     desc_ax.text(0,1,'Per-Game PPR Stats ({}; {})'.format(df.loc[df['player']==player,'position'].item(),week_text), 
                  ha='center', va='center', fontsize=20)
-    desc_ax.text(0,-2,'Green Highlight: xStat for other {}'.format(df.loc[df['player']==player,'position'].item()), 
+    desc_ax.text(0,-1,'Green Highlight: xStat for other {}'.format(df.loc[df['player']==player,'position'].item()), 
                  ha='center', va='center', fontsize=10, color='#218559')
-    desc_ax.set(xlabel=None, xlim=(-1,1), ylabel=None, ylim=(-2,1))
+    desc_ax.set(xlabel=None, xlim=(-1,1), ylabel=None, ylim=(-1,1))
     desc_ax.set_xticklabels([])
     desc_ax.set_yticklabels([])
     desc_ax.tick_params(left=False, bottom=False)
@@ -268,7 +268,7 @@ def qblist_card(player, weeks, df=season_market, team_logos=pd.read_csv('https:/
     fig.add_artist(Line2D([0.115, 0.925], [0.12, 0.12], color=qbl_main, linewidth=2))
 
     # Underline the Header
-    fig.add_artist(Line2D([0.115, 0.925], [0.74, 0.74], color=qbl_main, linewidth=2)) # 0.78 for ind stats
+    fig.add_artist(Line2D([0.115, 0.925], [0.76, 0.76], color=qbl_main, linewidth=2)) # 0.78 for ind stats
     
     sns.despine(left=True, bottom=True)
     st.pyplot(fig)
