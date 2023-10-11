@@ -197,9 +197,9 @@ def qblist_card(player, weeks, df=season_market, team_logos=pd.read_csv('https:/
     week_text = f'min {weeks} GP'
     desc_ax.text(0,1,'Per-Game PPR Stats ({}; {})'.format(df.loc[df['player']==player,'position'].item(),week_text), 
                  ha='center', va='center', fontsize=20)
-    desc_ax.text(0,-1,'Green Highlight: xStat for other {}'.format(df.loc[df['player']==player,'position'].item()), 
+    desc_ax.text(0,-2,'Green Highlight: xStat for other {}'.format(df.loc[df['player']==player,'position'].item()), 
                  ha='center', va='center', fontsize=10, color='#218559')
-    desc_ax.set(xlabel=None, xlim=(-1,1), ylabel=None, ylim=(-1,1))
+    desc_ax.set(xlabel=None, xlim=(-1,1), ylabel=None, ylim=(-2,1))
     desc_ax.set_xticklabels([])
     desc_ax.set_yticklabels([])
     desc_ax.tick_params(left=False, bottom=False)
