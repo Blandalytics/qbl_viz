@@ -273,13 +273,19 @@ def qblist_card(player, weeks, df=season_market, team_logos=pd.read_csv('https:/
     sns.despine(left=True, bottom=True)
     st.pyplot(fig)
 
-weeks = st.number_input('Games Played Minimum:',min_value=1,max_value=season_market['games'].max()-1,value=gp_thresh)
+col1, col2 = st.columns(2)
 
-pos_select = st.radio('Position Group', 
-                      ['All','Flex']+offense_pos,
-                      index=0,
-                      horizontal=True
-                      )
+with col1:
+    # Position
+    pos_select = st.radio('Position Group', 
+                          ['All','Flex']+offense_pos,
+                          index=0,
+                          horizontal=True
+                          )
+
+with col2:
+    # Games Played Threshold
+    weeks = st.number_input('Games Played Minimum:',min_value=1,max_value=season_market['games'].max()-1,value=gp_thresh)
 
 if pos_select=='All':
     pos_filter = offense_pos
